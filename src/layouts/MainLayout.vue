@@ -1,11 +1,13 @@
 <script setup>
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import HeaderMenu from 'src/components/layout/headerMenus.vue'
-// import UserStatus from "components/layout/headerUserStatus.vue";
-import PlayerControls from 'components/controls/playerControls.vue'
 import { socket } from 'src/boot/socketio'
 import { playerState, playerTimes } from 'src/composables/usePlayerState'
+
+import HeaderMenu from 'src/components/layout/headerMenus.vue'
+import HeaderMenuSmall from 'src/components/layout/headerMenuSmall'
+// import UserStatus from "components/layout/headerUserStatus.vue";
+import PlayerControls from 'components/controls/playerControls.vue'
 const router = useRouter()
 
 onBeforeMount(() => {
@@ -30,7 +32,8 @@ onBeforeMount(() => {
         <div class="header-font">Player Controls</div>
       </div>
       <!-- Menu Components -->
-      <HeaderMenu class="center" />
+      <HeaderMenu class="gt-xs" />
+      <HeaderMenuSmall class="lt-sm" />
       <!-- <UserStatus /> -->
     </q-header>
 
