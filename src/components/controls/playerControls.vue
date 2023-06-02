@@ -2,13 +2,14 @@
 import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
 import { playerState } from 'src/composables/usePlayerState'
+import { play } from 'src/composables/usePlayer'
 
-const play = () => {
-  socket.emit('playcommand', { command: 'play' })
-}
-const pause = () => {
-  socket.emit('playcommand', { command: 'pause' })
-}
+// const play = () => {
+//   socket.emit('playcommand', { command: 'play' })
+// }
+// const pause = () => {
+//   socket.emit('playcommand', { command: 'pause' })
+// }
 </script>
 
 <template>
