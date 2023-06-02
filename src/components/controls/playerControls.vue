@@ -2,7 +2,7 @@
 import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
 import { playerState } from 'src/composables/usePlayerState'
-import { play } from 'src/composables/usePlayer'
+import { play, pause, stop } from 'src/composables/usePlayer'
 
 // const play = () => {
 //   socket.emit('playcommand', { command: 'play' })
@@ -13,17 +13,25 @@ import { play } from 'src/composables/usePlayer'
 </script>
 
 <template>
-  <q-card flat square>
-    <q-card-section class="q-my-none q-py-none">
+  <div>
+    <div class="q-px-sm">
       <TimeSlider />
-    </q-card-section>
-    <q-card-section class="row no-wrap justify-center">
-      <div>{{ playerState.name }}</div>
-    </q-card-section>
-    <q-card-section class="row no-wrap justify-center">
+    </div>
+    <div class="row no-wrap justify-center items-center q-gutter-x-xs">
+      <div class="name">{{ playerState.name }}</div>
+      <q-btn
+        flat
+        round
+        icon="info"
+        color="primary"
+        @click="console.log(playerState)"
+      ></q-btn>
+    </div>
+    <div class="row no-wrap justify-center">
+      <!-- player btns -->
       <div>
         <q-btn
-          v-if="playerState.play !== 1"
+          v-if="playerState.status !== 'play'"
           flat
           round
           color="primary"
@@ -39,8 +47,9 @@ import { play } from 'src/composables/usePlayer'
           @click="pause()"
         />
       </div>
-    </q-card-section>
-  </q-card>
+      <q-btn flat round icon="stop" color="red-10" @click="stop" />
+    </div>
+  </div>
 </template>
 
 <style scoped></style>
