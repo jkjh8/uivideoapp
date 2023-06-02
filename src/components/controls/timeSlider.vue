@@ -6,11 +6,11 @@ import { playerTimes, msToMs, msToMsms } from 'src/composables/usePlayerState'
 const currentTime = ref(0)
 
 const panning = (value) => {
-  socket.emit('playcommand', { command: 'pan', value: value })
+  socket.emit('ioCommands', { command: 'pan', value: value })
 }
 
 const updateTimefromSlide = (time) => {
-  socket.emit('playcommand', { command: 'seek', seekTime: time })
+  socket.emit('ioCommands', { command: 'seek', seekTime: time })
 }
 </script>
 

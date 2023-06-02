@@ -3,23 +3,19 @@ import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
 import { playerState } from 'src/composables/usePlayerState'
 import { play, pause, stop } from 'src/composables/usePlayer'
-
-// const play = () => {
-//   socket.emit('playcommand', { command: 'play' })
-// }
-// const pause = () => {
-//   socket.emit('playcommand', { command: 'pause' })
-// }
 </script>
 
 <template>
-  <div>
-    <div class="q-px-sm">
+  <div class="q-pb-md">
+    <div class="q-px-md">
       <TimeSlider />
     </div>
     <div class="row no-wrap justify-center items-center q-gutter-x-xs">
-      <div class="name">{{ playerState.name }}</div>
+      <div class="name">
+        {{ playerState.name ? playerState.name : 'Please load media file' }}
+      </div>
       <q-btn
+        v-if="playerState.name"
         flat
         round
         icon="info"
