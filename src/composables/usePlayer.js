@@ -27,4 +27,15 @@ const stop = async () => {
   }
 }
 
-export { play, pause, stop }
+const loadFile = async (args) => {
+  try {
+    const r = await api.get('/fn/loadfile', {
+      params: { file: encodeURI(args.fullPath) }
+    })
+    console.log(r.data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { play, pause, stop, loadFile }

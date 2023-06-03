@@ -20,11 +20,16 @@ import { play, pause, stop } from 'src/composables/usePlayer'
         round
         icon="info"
         color="primary"
+        size="sm"
         @click="console.log(playerState)"
       ></q-btn>
     </div>
-    <div class="row no-wrap justify-center">
+    <div class="row no-wrap justify-center items-center">
       <!-- player btns -->
+      <div>
+        <q-btn flat round icon="skip_previous" color="primary" size="md" />
+        <q-btn flat round icon="fast_rewind" color="primary" size="md" />
+      </div>
       <div>
         <q-btn
           v-if="playerState.status !== 'play'"
@@ -32,6 +37,7 @@ import { play, pause, stop } from 'src/composables/usePlayer'
           round
           color="primary"
           icon="play_arrow"
+          size="lg"
           @click="play()"
         />
         <q-btn
@@ -40,10 +46,15 @@ import { play, pause, stop } from 'src/composables/usePlayer'
           round
           color="yellow-6"
           icon="pause"
+          size="lg"
           @click="pause()"
         />
       </div>
-      <q-btn flat round icon="stop" color="red-10" @click="stop" />
+      <q-btn flat round icon="stop" color="red-10" size="lg" @click="stop" />
+      <div>
+        <q-btn flat round icon="fast_forward" color="primary" size="md" />
+        <q-btn flat round icon="skip_next" color="primary" size="md" />
+      </div>
     </div>
   </div>
 </template>
