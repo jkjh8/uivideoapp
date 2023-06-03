@@ -1,4 +1,5 @@
 import { api } from 'src/boot/axios'
+import { playerState } from './usePlayerState'
 
 const play = async () => {
   try {
@@ -38,4 +39,18 @@ const loadFile = async (args) => {
   }
 }
 
-export { play, pause, stop, loadFile }
+const directPlay = async (args) => {
+  try {
+    const r = await api.get('/fn/loadFile', {
+      params: { file: encodeURI(args.fullPath) }
+    })
+    const interval = setInterval(() => {
+      if (playerState.value.status === 'ready') {
+        play()
+        clearInterval(interval)
+      }
+    }, 100)
+  } catch (error) {}
+}
+
+export { play, pause, stop, loadFile, directPlay }
