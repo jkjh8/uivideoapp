@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { currentPath } from 'src/composables/useFiles'
 import FileHeader from 'src/components/files/headerFiles'
 import FileList from 'src/components/files/listFiles'
+import simpleFileList from 'src/components/files/simpleListFiles'
 import TooltipDelay from 'src/components/tooltipDelay'
 </script>
 
@@ -13,7 +14,8 @@ import TooltipDelay from 'src/components/tooltipDelay'
         <FileHeader />
       </q-card-section>
       <q-card-section class="q-pt-xs q-mt-none">
-        <FileList />
+        <FileList class="gt-xs" />
+        <simpleFileList class="lt-sm" />
       </q-card-section>
     </q-card>
   </div>

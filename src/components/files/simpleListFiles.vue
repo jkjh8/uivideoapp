@@ -7,7 +7,7 @@ import {
   getFiles,
   download,
   deleteFile,
-  fileColumns
+  simpleFileColumns
 } from 'src/composables/useFiles'
 import { loadFile, directPlay } from 'src/composables/usePlayer'
 import deleteConfirmDialog from 'src/components/dialog/deleteDialog'
@@ -37,7 +37,7 @@ onBeforeMount(async () => {
   <q-table
     table-header-class="bg-grey-3"
     :rows="currentPathFiles"
-    :columns="fileColumns"
+    :columns="simpleFileColumns"
     :pagination="{ rowsPerPage: 0 }"
     hide-pagination
   >
@@ -45,12 +45,6 @@ onBeforeMount(async () => {
       <q-tr :props="props">
         <q-td key="name" :props="props">
           {{ props.row.name }}
-        </q-td>
-        <q-td key="type" :props="props">
-          {{ props.row.ext }}
-        </q-td>
-        <q-td key="size" :props="props">
-          {{ humanStorageSize(props.row.size) }}
         </q-td>
         <q-td key="actions" :props="props">
           <div class="q-gutter-x-sm">
@@ -73,25 +67,6 @@ onBeforeMount(async () => {
               <TooltipDelay msg="Play" />
             </q-btn>
             <!-- <q-btn flat round icon="info" @click="console.log(props.row)" /> -->
-            <q-btn
-              flat
-              round
-              color="secondary"
-              icon="download"
-              @click="download(props.row)"
-            >
-              <TooltipDelay msg="download" />
-            </q-btn>
-
-            <q-btn
-              flat
-              round
-              color="red-10"
-              icon="delete"
-              @click="confirmDelete(props.row)"
-            >
-              <TooltipDelay msg="Delete" />
-            </q-btn>
           </div>
         </q-td>
       </q-tr>
