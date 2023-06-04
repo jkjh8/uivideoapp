@@ -50,7 +50,31 @@ const directPlay = async (args) => {
         clearInterval(interval)
       }
     }, 100)
-  } catch (error) {}
+  } catch (error) {
+    console.error(error)
+  }
 }
 
-export { play, pause, stop, loadFile, directPlay }
+const fastforward = async (args) => {
+  try {
+    const r = await api.get('/fn/fastforward', {
+      params: { time: 5 }
+    })
+    console.log(r)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const rewind = async (args) => {
+  try {
+    const r = await api.get('/fn/rewind', {
+      params: { time: 5 }
+    })
+    console.log(r)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { play, pause, stop, loadFile, directPlay, fastforward, rewind }

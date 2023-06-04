@@ -2,7 +2,13 @@
 import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
 import { playerState } from 'src/composables/usePlayerState'
-import { play, pause, stop } from 'src/composables/usePlayer'
+import {
+  play,
+  pause,
+  stop,
+  rewind,
+  fastforward
+} from 'src/composables/usePlayer'
 </script>
 
 <template>
@@ -28,7 +34,14 @@ import { play, pause, stop } from 'src/composables/usePlayer'
       <!-- player btns -->
       <div>
         <q-btn flat round icon="skip_previous" color="primary" size="md" />
-        <q-btn flat round icon="fast_rewind" color="primary" size="md" />
+        <q-btn
+          flat
+          round
+          icon="fast_rewind"
+          color="primary"
+          size="md"
+          @click="rewind"
+        />
       </div>
       <div>
         <q-btn
@@ -52,7 +65,14 @@ import { play, pause, stop } from 'src/composables/usePlayer'
       </div>
       <q-btn flat round icon="stop" color="red-10" size="lg" @click="stop" />
       <div>
-        <q-btn flat round icon="fast_forward" color="primary" size="md" />
+        <q-btn
+          flat
+          round
+          icon="fast_forward"
+          color="primary"
+          size="md"
+          @click="fastforward"
+        />
         <q-btn flat round icon="skip_next" color="primary" size="md" />
       </div>
     </div>
