@@ -2,8 +2,9 @@
 import { ref, onBeforeMount } from 'vue'
 import { format } from 'quasar'
 import { api } from 'src/boot/axios'
-import { currentPathFiles, getFiles } from 'src/composables/useFiles'
+import { currentPathFiles, getFiles, download } from 'src/composables/useFiles'
 import { loadFile, directPlay } from 'src/composables/usePlayer'
+import TooltipDelay from 'src/components/tooltipDelay'
 
 const { humanStorageSize } = format
 const audioVideo = ['.mp4', 'mkv', 'webm', 'mp3', 'wav', 'flac', 'aac']
@@ -68,6 +69,7 @@ onBeforeMount(async () => {
               icon="folder_open"
               @click="loadFile(props.row)"
             >
+              <TooltipDelay msg="Load" />
             </q-btn>
             <q-btn
               flat
@@ -76,8 +78,18 @@ onBeforeMount(async () => {
               icon="play_arrow"
               @click="directPlay(props.row)"
             >
+              <TooltipDelay msg="Play" />
             </q-btn>
-            <q-btn flat round icon="info" @click="console.log(props.row)" />
+            <!-- <q-btn flat round icon="info" @click="console.log(props.row)" /> -->
+            <q-btn
+              flat
+              round
+              color="secondary"
+              icon="download"
+              @click="download(props.row)"
+            >
+              <TooltipDelay msg="download" />
+            </q-btn>
           </div>
         </q-td>
       </q-tr>

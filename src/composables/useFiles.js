@@ -16,4 +16,23 @@ const getFiles = async () => {
   currentPath.value = r.data.currentPath.replace(r.data.defaultPath, '')
 }
 
-export { currentPath, currentPathFiles, getFiles }
+const download = (file) => {
+  api
+    .get('/files/downloadFile', {
+      params: { file },
+      responseType: 'blob'
+    })
+    .then((res) => {
+      const url = window.URL.createObjectURL(new Blob([res.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', file.base)
+      document.body.appendChild(link)
+      link.click()
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
+
+export { currentPath, currentPathFiles, getFiles, download }

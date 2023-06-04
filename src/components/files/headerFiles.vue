@@ -31,13 +31,9 @@ const fileuploadDialog = () => {
     </div>
     <!-- back -->
     <div>
-      <q-btn
-        flat
-        round
-        color="primary"
-        icon="upload"
-        @click="fileuploadDialog"
-      />
+      <q-btn flat round color="primary" icon="upload" @click="fileuploadDialog">
+        <TooltipDelay msg="Upload Files" />
+      </q-btn>
     </div>
   </div>
 </template>

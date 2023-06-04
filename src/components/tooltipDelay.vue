@@ -9,7 +9,7 @@ const props = defineProps({ msg: String })
     self="bottom middle"
     :offset="[10, 10]"
     :delay="500"
-    style="background: #aaaaaaaa"
+    style="background: #888888aa"
   >
     {{ props.msg }}
   </q-tooltip>
