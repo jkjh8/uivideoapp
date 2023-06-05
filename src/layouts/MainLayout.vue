@@ -2,7 +2,12 @@
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { socket } from 'src/boot/socketio'
-import { playerState, playerTimes } from 'src/composables/usePlayerState'
+import {
+  playerState,
+  playerTimes,
+  devices,
+  device
+} from 'src/composables/usePlayerState'
 
 import HeaderMenu from 'src/components/layout/headerMenus.vue'
 import HeaderMenuSmall from 'src/components/layout/headerMenuSmall'
@@ -20,6 +25,14 @@ onBeforeMount(() => {
   })
   socket.on('times', (args) => {
     playerTimes.value = { ...args }
+  })
+  socket.on('devices', (args) => {
+    devices.value = JSON.parse(args)
+    console.log(devices.value)
+  })
+  socket.on('device', (args) => {
+    device.value = args.device
+    console.log(device.value)
   })
 })
 </script>

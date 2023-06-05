@@ -7,7 +7,8 @@ const playerTimes = ref({
   currentTime: 0,
   remaining: 0
 })
-
+const device = ref('')
+const devices = ref([])
 const msToMs = (time) => {
   return ms
     .to(
@@ -25,4 +26,4 @@ const msToMsms = (time) => {
   }.${times[2]}`
 }
 
-export { playerState, playerTimes, msToMs, msToMsms }
+export { playerState, playerTimes, device, devices, msToMs, msToMsms }
