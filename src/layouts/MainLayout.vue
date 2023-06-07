@@ -27,11 +27,11 @@ onBeforeMount(() => {
     playerTimes.value = { ...args }
   })
   socket.on('devices', (args) => {
-    devices.value = JSON.parse(args)
-    console.log(devices.value)
+    devices.value = JSON.parse(args).filter((d) => d.kind == 'audiooutput')
   })
   socket.on('device', (args) => {
-    device.value = args.device
+    device.value = args.device ? args.device : 'default'
+
     console.log(device.value)
   })
 })

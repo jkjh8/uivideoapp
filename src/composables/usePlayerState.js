@@ -1,5 +1,6 @@
+import { api } from 'src/composables/useAxios'
 import { ref } from 'vue'
-import { ms, h, m, s } from 'time-convert'
+import { ms, m, s } from 'time-convert'
 
 const playerState = ref({})
 const playerTimes = ref({
@@ -9,6 +10,34 @@ const playerTimes = ref({
 })
 const device = ref('')
 const devices = ref([])
+
+const getDevices = async () => {
+  try {
+    const r = await api.get('/fn/devices')
+    console.log(r)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getDevice = async () => {
+  try {
+    const r = await api.get('/fn/device')
+    console.log(r)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const setDevice = async (deviceId) => {
+  try {
+    const r = await api.post('/fn/setDevice', { deviceId })
+    console.log(r)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const msToMs = (time) => {
   return ms
     .to(
@@ -26,4 +55,14 @@ const msToMsms = (time) => {
   }.${times[2]}`
 }
 
-export { playerState, playerTimes, device, devices, msToMs, msToMsms }
+export {
+  playerState,
+  playerTimes,
+  device,
+  devices,
+  getDevice,
+  getDevices,
+  setDevice,
+  msToMs,
+  msToMsms
+}

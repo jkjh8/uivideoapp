@@ -1,9 +1,7 @@
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
 import deleteConfirmDialog from 'src/components/dialog/deleteDialog'
 
-const $q = useQuasar()
 const currentPath = ref('')
 const currentPathFiles = ref([])
 const defaultPath = ref('')

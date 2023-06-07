@@ -12,7 +12,7 @@ const fileuploadDialog = () => {
     component: FileUploader
   }).onOk(async () => {
     $q.loading.show()
-    await getFiles
+    await getFiles()
     $q.loading.hide()
   })
 }

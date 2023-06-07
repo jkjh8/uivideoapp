@@ -2,6 +2,7 @@
 import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
 import { playerState } from 'src/composables/usePlayerState'
+import SourceName from 'src/components/controls/sourceName'
 import {
   play,
   pause,
@@ -17,18 +18,7 @@ import {
       <TimeSlider />
     </div>
     <div class="row no-wrap justify-center items-center q-gutter-x-xs">
-      <div class="name">
-        {{ playerState.name ? playerState.name : 'Please load media file' }}
-      </div>
-      <q-btn
-        v-if="playerState.name"
-        flat
-        round
-        icon="info"
-        color="primary"
-        size="sm"
-        @click="console.log(playerState)"
-      ></q-btn>
+      <SourceName />
     </div>
     <div class="row no-wrap justify-center items-center">
       <!-- player btns -->
