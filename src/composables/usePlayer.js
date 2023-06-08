@@ -1,4 +1,4 @@
-import { api } from 'src/boot/axios'
+import { api } from './useAxios'
 import { playerState } from './usePlayerState'
 
 const play = async () => {

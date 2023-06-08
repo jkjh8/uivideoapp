@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { api } from 'src/boot/axios'
+import { api } from './useAxios'
 import deleteConfirmDialog from 'src/components/dialog/deleteDialog'
 
 const currentPath = ref('')

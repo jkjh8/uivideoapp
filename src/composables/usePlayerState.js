@@ -1,4 +1,4 @@
-import { api } from 'src/composables/useAxios'
+import { api } from './useAxios'
 import { ref } from 'vue'
 import { ms, m, s } from 'time-convert'
 
