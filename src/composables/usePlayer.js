@@ -77,4 +77,23 @@ const rewind = async (args) => {
   }
 }
 
-export { play, pause, stop, loadFile, directPlay, fastforward, rewind }
+const setfullscreen = async (value) => {
+  try {
+    const r = await api.get('/fn/setfullscreen', {
+      params: { fullscreen: value ? value : true }
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export {
+  play,
+  pause,
+  stop,
+  loadFile,
+  directPlay,
+  fastforward,
+  rewind,
+  setfullscreen
+}

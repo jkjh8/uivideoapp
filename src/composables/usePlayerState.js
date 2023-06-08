@@ -8,6 +8,7 @@ const playerTimes = ref({
   currentTime: 0,
   remaining: 0
 })
+const isFullscreen = ref(false)
 const device = ref('')
 const devices = ref([])
 
@@ -58,6 +59,7 @@ const msToMsms = (time) => {
 export {
   playerState,
   playerTimes,
+  isFullscreen,
   device,
   devices,
   getDevice,

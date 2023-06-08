@@ -1,15 +1,17 @@
 <script setup>
 import { socket } from 'src/boot/socketio'
 import TimeSlider from 'src/components/controls/timeSlider'
-import { playerState } from 'src/composables/usePlayerState'
+import { playerState, isFullscreen } from 'src/composables/usePlayerState'
 import SourceName from 'src/components/controls/sourceName'
 import {
   play,
   pause,
   stop,
   rewind,
-  fastforward
+  fastforward,
+  setfullscreen
 } from 'src/composables/usePlayer'
+import TooltipDelay from 'src/components/tooltipDelay'
 </script>
 
 <template>
@@ -64,6 +66,20 @@ import {
           @click="fastforward"
         />
         <q-btn flat round icon="skip_next" color="primary" size="md" />
+      </div>
+      <div>
+        <q-btn
+          v-if="isFullscreen"
+          round
+          flat
+          icon="fullscreen"
+          @click="setfullscreen(true)"
+        >
+          <TooltipDelay msg="Leave Fullscreen" />
+        </q-btn>
+        <q-btn v-else round flat icon="fullscreen" @click="setfullscreen(true)">
+          <TooltipDelay msg="Enter Fullscreen" />
+        </q-btn>
       </div>
     </div>
   </div>

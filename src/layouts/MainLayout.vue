@@ -5,6 +5,7 @@ import { socket } from 'src/boot/socketio'
 import {
   playerState,
   playerTimes,
+  isFullscreen,
   devices,
   device
 } from 'src/composables/usePlayerState'
@@ -31,8 +32,9 @@ onBeforeMount(() => {
   })
   socket.on('device', (args) => {
     device.value = args.device ? args.device : 'default'
-
-    console.log(device.value)
+  })
+  socket.on('fullscreen', (args) => {
+    isFullscreen.value = args.fullscreen
   })
 })
 </script>
