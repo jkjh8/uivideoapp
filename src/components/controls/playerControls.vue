@@ -12,6 +12,24 @@ import {
   setfullscreen
 } from 'src/composables/usePlayer'
 import TooltipDelay from 'src/components/tooltipDelay'
+
+const chkPlayBtn = () => {
+  if (playerState.value.status && playerState.value.status.status) {
+    let v
+    switch (playerState.value.status.status) {
+      case 'play':
+      case 'playing':
+        v = true
+        break
+      default:
+        v = false
+        break
+    }
+    return v
+  } else {
+    return false
+  }
+}
 </script>
 
 <template>
@@ -37,22 +55,22 @@ import TooltipDelay from 'src/components/tooltipDelay'
       </div>
       <div>
         <q-btn
-          v-if="playerState.status.status !== 'play'"
-          flat
-          round
-          color="primary"
-          icon="play_arrow"
-          size="lg"
-          @click="play()"
-        />
-        <q-btn
-          v-else
+          v-if="chkPlayBtn()"
           flat
           round
           color="yellow-6"
           icon="pause"
           size="lg"
           @click="pause()"
+        />
+        <q-btn
+          v-else
+          flat
+          round
+          color="primary"
+          icon="play_arrow"
+          size="lg"
+          @click="play()"
         />
       </div>
       <q-btn flat round icon="stop" color="red-10" size="lg" @click="stop" />

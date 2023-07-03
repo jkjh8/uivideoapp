@@ -21,7 +21,7 @@ const updateTimefromSlide = (time) => {
       :min="0"
       :max="playerTimes.duration"
       :step="0.01"
-      :label-value="msToMsms(playerTimes.currentTime * 1000)"
+      :label-value="msToMs(playerTimes.currentTime * 1000)"
       label
       @update:model-value="updateTimefromSlide"
       @pan="panning"

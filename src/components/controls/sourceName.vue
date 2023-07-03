@@ -1,10 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
 import { playerState } from 'src/composables/usePlayerState.js'
-
-onMounted(() => {
-  console.log('source name tag', playerState.value)
-})
 
 const getAudioChannels = (state) => {
   try {
@@ -25,7 +20,7 @@ const getAudioChannels = (state) => {
       }
     }
   } catch (error) {
-    console.error(error)
+    // console.error(error)
   }
 }
 </script>
