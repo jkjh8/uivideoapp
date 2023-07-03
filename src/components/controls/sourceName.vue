@@ -1,18 +1,24 @@
 <script setup>
+import { onMounted } from 'vue'
 import { playerState } from 'src/composables/usePlayerState.js'
 
+onMounted(() => {
+  console.log('source name tag', playerState.value)
+})
+
 const getAudioChannels = (state) => {
-  if (state && state.streams) {
-    for (let i = 0; i < state.streams.length; i++) {
-      if (state.streams[i].channels) {
-        if (state.streams[i].channels == 2) {
+  let streams = state.file.meta.streams
+  if (streams) {
+    for (let i = 0; i < streams.length; i++) {
+      if (streams[i].channels) {
+        if (streams[i].channels == 2) {
           return 'Stereo'
-        } else if (state.streams[i].channels == 6) {
+        } else if (streams[i].channels == 6) {
           return '5.1'
-        } else if (state.streams[i].channels == 8) {
+        } else if (streams[i].channels == 8) {
           return '7.1'
         } else {
-          return state.streams[i].channels
+          return streams[i].channels
         }
       }
     }
@@ -23,11 +29,14 @@ const getAudioChannels = (state) => {
 <template>
   <div class="row no-wrap justify-center items-center q-gutter-x-xs">
     <div class="name">
-      {{ playerState.name ? playerState.name : 'Please load media file' }}
+      <div v-if="playerState.file && playerState.file.name">
+        {{ playerState.file.name }}
+      </div>
+      <div v-else>Please load media file</div>
     </div>
     <div class="text-caption">{{ getAudioChannels(playerState) }}</div>
     <q-btn
-      v-if="playerState.name"
+      v-if="playerState.file && playerState.file.name"
       flat
       round
       icon="info"

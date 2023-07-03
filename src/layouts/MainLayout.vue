@@ -24,6 +24,9 @@ onBeforeMount(() => {
   socket.on('playerstate', (args) => {
     playerState.value = { ...args }
   })
+  socket.on('status', (args) => {
+    playerState.value = { ...args }
+  })
   socket.on('times', (args) => {
     playerTimes.value = { ...args }
   })
