@@ -7,21 +7,25 @@ onMounted(() => {
 })
 
 const getAudioChannels = (state) => {
-  let streams = state.file.meta.streams
-  if (streams) {
-    for (let i = 0; i < streams.length; i++) {
-      if (streams[i].channels) {
-        if (streams[i].channels == 2) {
-          return 'Stereo'
-        } else if (streams[i].channels == 6) {
-          return '5.1'
-        } else if (streams[i].channels == 8) {
-          return '7.1'
-        } else {
-          return streams[i].channels
+  try {
+    let streams = state.file.meta.streams
+    if (streams) {
+      for (let i = 0; i < streams.length; i++) {
+        if (streams[i].channels) {
+          if (streams[i].channels == 2) {
+            return 'Stereo'
+          } else if (streams[i].channels == 6) {
+            return '5.1'
+          } else if (streams[i].channels == 8) {
+            return '7.1'
+          } else {
+            return streams[i].channels
+          }
         }
       }
     }
+  } catch (error) {
+    console.error(error)
   }
 }
 </script>

@@ -37,7 +37,7 @@ import TooltipDelay from 'src/components/tooltipDelay'
       </div>
       <div>
         <q-btn
-          v-if="playerState.status !== 'play'"
+          v-if="playerState.status.status !== 'play'"
           flat
           round
           color="primary"
