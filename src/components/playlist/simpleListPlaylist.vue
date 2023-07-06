@@ -1,14 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { format, useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
-import {
-  currentPathFiles,
-  getFiles,
-  download,
-  deleteFile,
-  fileColumns
-} from 'src/composables/useFiles'
+import { playlist, simplePlaylistColumns } from 'src/composables/usePlaylist'
 import { loadFile, directPlay } from 'src/composables/usePlayer'
 import deleteConfirmDialog from 'src/components/dialog/deleteDialog'
 import TooltipDelay from 'src/components/tooltipDelay'
@@ -25,6 +19,7 @@ const confirmDelete = (args) => {
     deleteFile(args)
   })
 }
+onBeforeMount(async () => {})
 </script>
 
 <template>
@@ -33,8 +28,8 @@ const confirmDelete = (args) => {
   </div> -->
   <q-table
     table-header-class="bg-grey-3"
-    :rows="currentPathFiles"
-    :columns="fileColumns"
+    :rows="playlist"
+    :columns="simplePlaylistColumns"
     :pagination="{ rowsPerPage: 0 }"
     hide-pagination
     wrap-cells
@@ -51,7 +46,7 @@ const confirmDelete = (args) => {
           {{ humanStorageSize(props.row.size) }}
         </q-td>
         <q-td key="actions" :props="props">
-          <div class="q-gutter-x-sm" style="min-width: 200px">
+          <div class="q-gutter-x-sm">
             <q-btn
               flat
               round

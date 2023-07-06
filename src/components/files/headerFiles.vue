@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeMount } from 'vue'
 import { useQuasar } from 'quasar'
 import { currentPath, getFiles } from 'src/composables/useFiles'
 
@@ -16,6 +17,11 @@ const fileuploadDialog = () => {
     $q.loading.hide()
   })
 }
+
+onBeforeMount(() => {
+  // load file from local storage
+  getFiles()
+})
 </script>
 
 <template>

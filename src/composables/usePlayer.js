@@ -45,7 +45,7 @@ const directPlay = async (args) => {
       params: { file: encodeURI(args.fullPath) }
     })
     const interval = setInterval(() => {
-      if (playerState.value.status === 'ready') {
+      if (playerState.value.status.status === 'ready') {
         play()
         clearInterval(interval)
       }

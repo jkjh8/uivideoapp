@@ -1,5 +1,15 @@
 <script setup>
+import { onBeforeMount } from 'vue'
+import { playerState } from 'src/composables/usePlayerState'
+import { api } from 'src/composables/useAxios'
 import SelectAudioDevice from 'src/components/setup/selectAudioDevice'
+import SetupShowLogo from 'src/components/setup/showLogo'
+import SetupFullscreen from 'src/components/setup/setFullscreen'
+
+onBeforeMount(async () => {
+  const r = await api.get('/setup/updatesetup')
+  playerState.value = { ...r.value }
+})
 </script>
 
 <template>
@@ -7,6 +17,8 @@ import SelectAudioDevice from 'src/components/setup/selectAudioDevice'
     <q-card class="bg-grey-1" flat>
       <q-card-section>
         <SelectAudioDevice />
+        <SetupShowLogo />
+        <SetupFullscreen />
       </q-card-section>
     </q-card>
   </div>

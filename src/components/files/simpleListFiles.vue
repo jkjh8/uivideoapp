@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref } from 'vue'
 import { format, useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
 import {
@@ -25,9 +25,6 @@ const confirmDelete = (args) => {
     deleteFile(args)
   })
 }
-onBeforeMount(async () => {
-  getFiles()
-})
 </script>
 
 <template>
@@ -40,6 +37,7 @@ onBeforeMount(async () => {
     :columns="simpleFileColumns"
     :pagination="{ rowsPerPage: 0 }"
     hide-pagination
+    wrap-cells
   >
     <template v-slot:body="props">
       <q-tr :props="props">
@@ -47,7 +45,7 @@ onBeforeMount(async () => {
           {{ props.row.name }}
         </q-td>
         <q-td key="actions" :props="props">
-          <div class="q-gutter-x-sm">
+          <div class="q-gutter-x-sm" style="min-width: 130px">
             <q-btn
               flat
               round

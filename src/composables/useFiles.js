@@ -29,7 +29,7 @@ const fileColumns = [
     align: 'center',
     sortable: true
   },
-  { name: 'actions', label: 'ACTIONS' }
+  { name: 'actions', label: 'ACTIONS', align: 'center' }
 ]
 
 const simpleFileColumns = [
@@ -40,7 +40,7 @@ const simpleFileColumns = [
     align: 'center',
     sortable: true
   },
-  { name: 'actions', label: 'ACTIONS' }
+  { name: 'actions', label: 'ACTIONS', align: 'center' }
 ]
 
 const getFiles = async () => {

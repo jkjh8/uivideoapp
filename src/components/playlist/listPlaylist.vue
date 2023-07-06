@@ -1,14 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { format, useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
-import {
-  currentPathFiles,
-  getFiles,
-  download,
-  deleteFile,
-  fileColumns
-} from 'src/composables/useFiles'
+import { playlist, playlistColumns } from 'src/composables/usePlaylist'
 import { loadFile, directPlay } from 'src/composables/usePlayer'
 import deleteConfirmDialog from 'src/components/dialog/deleteDialog'
 import TooltipDelay from 'src/components/tooltipDelay'
@@ -25,6 +19,7 @@ const confirmDelete = (args) => {
     deleteFile(args)
   })
 }
+onBeforeMount(async () => {})
 </script>
 
 <template>
@@ -33,25 +28,25 @@ const confirmDelete = (args) => {
   </div> -->
   <q-table
     table-header-class="bg-grey-3"
-    :rows="currentPathFiles"
-    :columns="fileColumns"
+    :rows="playlist"
+    :columns="playlistColumns"
     :pagination="{ rowsPerPage: 0 }"
     hide-pagination
     wrap-cells
   >
     <template v-slot:body="props">
       <q-tr :props="props">
+        <q-td key="num" :props="props">
+          {{ props.row.num }}
+        </q-td>
         <q-td key="name" :props="props">
           {{ props.row.name }}
         </q-td>
-        <q-td key="type" :props="props">
-          {{ props.row.ext }}
-        </q-td>
-        <q-td key="size" :props="props">
-          {{ humanStorageSize(props.row.size) }}
+        <q-td key="exists" :props="props">
+          {{ props.row.exists }}
         </q-td>
         <q-td key="actions" :props="props">
-          <div class="q-gutter-x-sm" style="min-width: 200px">
+          <div class="q-gutter-x-sm">
             <q-btn
               flat
               round
