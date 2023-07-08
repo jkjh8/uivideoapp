@@ -14,7 +14,7 @@ const devices = ref([])
 
 const getDevices = async () => {
   try {
-    const r = await api.get('/fn/devices')
+    const r = await api.get('/setup/devices')
     console.log(r)
   } catch (error) {
     console.error(error)
@@ -23,7 +23,7 @@ const getDevices = async () => {
 
 const getDevice = async () => {
   try {
-    const r = await api.get('/fn/device')
+    const r = await api.get('/setup/device')
     console.log(r)
   } catch (error) {
     console.error(error)
@@ -32,7 +32,7 @@ const getDevice = async () => {
 
 const setDevice = async (deviceId) => {
   try {
-    const r = await api.post('/fn/setDevice', { deviceId })
+    const r = await api.post('/setup/setDevice', { deviceId })
     console.log(r)
   } catch (error) {
     console.error(error)

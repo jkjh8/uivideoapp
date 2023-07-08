@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { api } from 'src/composables/useAxios.js'
 import { playerState } from 'src/composables/usePlayerState.js'
-const $q = useQuasar()
+
 const showLogoVal = ref(false)
+
+const $q = useQuasar()
 
 const fnUpdateShowLogoVal = async () => {
   const r = await api.put('/setup/showlogo', {

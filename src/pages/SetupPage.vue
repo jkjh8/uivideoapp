@@ -4,11 +4,11 @@ import { playerState } from 'src/composables/usePlayerState'
 import { api } from 'src/composables/useAxios'
 import SelectAudioDevice from 'src/components/setup/selectAudioDevice'
 import SetupShowLogo from 'src/components/setup/showLogo'
-import SetupFullscreen from 'src/components/setup/setFullscreen'
+import SetupFullscreen from 'src/components/setup/startWithFullscreen'
 
 onBeforeMount(async () => {
   const r = await api.get('/setup/updatesetup')
-  playerState.value = { ...r.value }
+  playerState.value = { ...r.data.value }
 })
 </script>
 
